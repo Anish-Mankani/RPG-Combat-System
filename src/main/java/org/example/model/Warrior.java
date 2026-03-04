@@ -8,9 +8,10 @@ public class Warrior extends GameCharacter {
     }
 
     @Override
-    public void attack() {
-
-        System.out.println(name + " swings sword dealing " + strength + " damage!");
+    public void attack(GameCharacter target) {
+        System.out.println(name + " attacks " + target.name +
+                " dealing " + strength + " damage!");
+        target.takeDamage(strength);
     }
 
 

@@ -13,10 +13,21 @@ public abstract class GameCharacter {
 
     }
 
-    public  abstract void attack();
+    public String getName() {
+        return name;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public  abstract void attack(GameCharacter target);
 
     public void takeDamage (int damage) {
             health -= damage;
+            if (health < 0) {
+                health = 0;
+            }
     }
 }
 
