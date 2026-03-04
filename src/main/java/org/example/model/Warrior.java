@@ -9,7 +9,7 @@ public class Warrior extends GameCharacter {
 
     @Override
     public void attack(GameCharacter target) {
-        System.out.println(name + " attacks " + target.name +
+        System.out.println(name + " attacks " + target.getName() +
                 " dealing " + strength + " damage!");
         target.takeDamage(strength);
     }

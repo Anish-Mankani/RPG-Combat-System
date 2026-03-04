@@ -21,6 +21,10 @@ public abstract class GameCharacter {
         return health;
     }
 
+    public boolean isAlive() {
+        return health > 0;
+    }
+
     public  abstract void attack(GameCharacter target);
 
     public void takeDamage (int damage) {
