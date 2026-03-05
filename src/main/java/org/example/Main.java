@@ -1,31 +1,61 @@
 package org.example;
 
+import org.example.model.GameCharacter;
 import org.example.model.Mage;
 import org.example.model.Warrior;
 
+import java.util.ArrayList;
+
 public class Main {
+
     public static void main(String[] args) {
 
         Warrior warrior = new Warrior("Thor", 120, 20);
         Mage mage = new Mage("Gandalf", 80, 15, 50);
+        GameCharacter dragon = new Warrior("Dragon", 200, 25);
 
-        while (warrior.isAlive() && mage.isAlive()) {
+        ArrayList<GameCharacter> party = new ArrayList<>();
 
-            warrior.attack(mage);
+        party.add(warrior);
+        party.add(mage);
 
-            if (mage.isAlive()){
-                mage.attack(warrior);
+        while (dragon.isAlive()) {
+
+            System.out.println("\n--- New Round ---");
+
+            // Heroes attack dragon
+            for (GameCharacter hero : party) {
+                if (hero.isAlive()) {
+                    hero.attack(dragon);
+                }
             }
-            System.out.println("Warrior health: " + warrior.getHealth());
-            System.out.println("mage health: " + mage.getHealth());
-            System.out.println("------------------------");
-        }
 
-        if (warrior.isAlive()) {
-            System.out.println(" Warrior Wins!");
-        } else {
-            System.out.println("Mage Wins");
-        }
+            if (!dragon.isAlive()) {
+                System.out.println("\nHeroes defeated the Dragon!");
+                break;
+            }
 
+            // Dragon attacks heroes
+            for (GameCharacter hero : party) {
+                if (hero.isAlive()) {
+                    dragon.attack(hero);
+                }
+            }
+
+            // Check if all heroes died
+            boolean allDead = true;
+
+            for (GameCharacter hero : party) {
+                if (hero.isAlive()) {
+                    allDead = false;
+                    break;
+                }
+            }
+
+            if (allDead) {
+                System.out.println("\nDragon has defeated all heroes!");
+                break;
+            }
+        }
     }
 }

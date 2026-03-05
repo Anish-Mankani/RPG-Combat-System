@@ -1,5 +1,7 @@
 package org.example.model;
 
+import java.util.Random;
+
 public class Warrior extends GameCharacter {
 
 
@@ -9,9 +11,13 @@ public class Warrior extends GameCharacter {
 
     @Override
     public void attack(GameCharacter target) {
+
+        Random random = new Random();
+        int damage = random.nextInt(strength) + 1;
+
         System.out.println(name + " attacks " + target.getName() +
                 " dealing " + strength + " damage!");
-        target.takeDamage(strength);
+        target.takeDamage(damage);
     }
 
 
